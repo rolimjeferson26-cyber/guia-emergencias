@@ -181,6 +181,7 @@ ul.list-plain.gy li::before{
 }
 .param-box b{ color:var(--red); }
 
+.cmp-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 table.cmp{
   width:100%; border-collapse:collapse; font-size:12.5px; margin-top:6px;
 }
