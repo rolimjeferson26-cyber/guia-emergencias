@@ -111,7 +111,7 @@ Por ordem de prioridade, a partir das limitações acima:
 
 **Jeferson Rolim**, Bombeiro EIP
 - GitHub: [@rolimjeferson26-cyber](https://github.com/rolimjeferson26-cyber)
-- LinkedIn: em breve
+- LinkedIn: [Jeferson Rolim](https://www.linkedin.com/in/jeferson-rolim-023348437)
 
 ## Licença
 
