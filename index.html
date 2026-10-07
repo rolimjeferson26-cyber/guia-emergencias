@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-8iy3jmS5d5Kk3nne94UbzkJpsrEp/KR938e8RrtSaA8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <title>Emergências Médicas — Consulta Rápida</title>
 <link rel="stylesheet" href="estilo.css">
 <style>
@@ -95,7 +96,7 @@
 
 <footer class="app-footer">
   <b>Material de estudo para formação.</b> Não substitui a formação certificada, os protocolos oficiais em vigor, nem deve ser usado para apoio a decisão em ocorrência real. Confirmar sempre junto de fontes e protocolos atualizados.
-  <div class="app-footer-author">Criado por Jeferson Rolim</div>
+  <div class="app-footer-author">Criado por Jeferson Rolim · <a href="privacidade.html">Privacidade</a></div>
 </footer>
 
 <div class="modal-overlay" id="aboutModal" hidden>
@@ -317,7 +318,7 @@ function cardHTML(cond){
 
   return `
     <div class="card" data-id="${cond.id}">
-      <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-head">
         <h2>${cond.nome}</h2>
         <div class="chevron"></div>
       </div>
@@ -326,10 +327,17 @@ function cardHTML(cond){
   `;
 }
 
+// Abre/fecha uma ficha ao tocar no cabeçalho. Usa um único "ouvinte" na
+// página (delegação de eventos) em vez de onclick="..." no HTML, que a
+// Content-Security-Policy bloqueia.
 function toggleCard(headEl){
   const card = headEl.parentElement;
   card.classList.toggle('open');
 }
+document.addEventListener('click', e => {
+  const head = e.target.closest('.card-head');
+  if(head) toggleCard(head);
+});
 
 function render(){
   renderChips();

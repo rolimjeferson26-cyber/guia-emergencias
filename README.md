@@ -85,6 +85,7 @@ Os testes estão em [`tests/test_dados.py`](tests/test_dados.py) e só usam a bi
 
 ```bash
 python3 tests/test_dados.py
+python3 tests/test_seguranca.py
 ```
 
 - Confirma que o `emergencias_medicas.json` e a cópia embutida no `index.html` são iguais.
@@ -92,6 +93,12 @@ python3 tests/test_dados.py
 - Confirma que os valores pediátricos da ficha batem com os do Simulador de Triagem (`parametros_vitais.json`). O simulador é procurado na variável `SIMULADOR_TRIAGEM_DIR`, em `../simulador-triagem` ou numa pasta ao lado com esse ficheiro. Se não for encontrado, este teste aparece como `IGNORADO`.
 
 Também correm com o pytest (`pip install pytest`, depois `pytest tests`).
+
+## Segurança e privacidade
+
+- **Content-Security-Policy:** cada página tem uma CSP numa etiqueta `<meta>` (o GitHub Pages não permite cabeçalhos HTTP). Só correm scripts do próprio site e os scripts embutidos autorizados pelo seu hash SHA-256. **Se editar um `<script>` dentro de um `.html`, corra `python3 ferramentas/atualizar_csp.py`**; o teste `tests/test_seguranca.py` falha se a CSP ficar desatualizada.
+- **Sem `onclick="..."` no HTML:** a CSP bloqueia-os; os cliques usam `addEventListener`.
+- **Privacidade:** sem contas, cookies, estatísticas nem dados guardados no dispositivo. Ver [`privacidade.html`](privacidade.html).
 
 ## Dados e fontes
 
