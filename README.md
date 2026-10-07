@@ -98,7 +98,7 @@ Também correm com o pytest (`pip install pytest`, depois `pytest tests`).
 
 - **Content-Security-Policy:** cada página tem uma CSP numa etiqueta `<meta>` (o GitHub Pages não permite cabeçalhos HTTP). Só correm scripts do próprio site e os scripts embutidos autorizados pelo seu hash SHA-256. **Se editar um `<script>` dentro de um `.html`, corra `python3 ferramentas/atualizar_csp.py`**; o teste `tests/test_seguranca.py` falha se a CSP ficar desatualizada.
 - **Sem `onclick="..."` no HTML:** a CSP bloqueia-os; os cliques usam `addEventListener`.
-- **Privacidade:** sem contas, cookies, estatísticas nem dados guardados no dispositivo. Ver [`privacidade.html`](privacidade.html).
+- **Privacidade:** sem contas, cookies nem dados guardados no dispositivo; visitas contadas com o GoatCounter (sem cookies, `count.js` servido pelo próprio site, licença ISC). Ver [`privacidade.html`](privacidade.html).
 
 ## Dados e fontes
 
