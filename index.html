@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-8iy3jmS5d5Kk3nne94UbzkJpsrEp/KR938e8RrtSaA8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-8iy3jmS5d5Kk3nne94UbzkJpsrEp/KR938e8RrtSaA8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.goatcounter.com; connect-src 'self' https://*.goatcounter.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <title>Emergências Médicas — Consulta Rápida</title>
 <link rel="stylesheet" href="estilo.css">
 <style>
@@ -391,5 +391,7 @@ document.getElementById('siglasBtn').addEventListener('click', () => {
 
 render();
 </script>
+<!-- Estatísticas de visitas sem cookies (GoatCounter); ver privacidade.html -->
+<script data-goatcounter="https://guia-emergencias.goatcounter.com/count" async src="count.js"></script>
 </body>
 </html>
