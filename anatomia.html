@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-76+m7R33GSqw6hmF+S4YJ7JXnfWq3YHEX2h8EIdmvJE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <title>Anatomia Interativa — Consulta Rápida</title>
 <link rel="stylesheet" href="estilo.css">
 <style>
@@ -80,7 +81,7 @@
 
 <footer class="app-footer">
   <b>Material de estudo para formação.</b> Não substitui a formação certificada, os protocolos oficiais em vigor, nem deve ser usado para apoio a decisão em ocorrência real. Confirmar sempre junto de fontes e protocolos atualizados.
-  <div class="app-footer-author">Criado por Jeferson Rolim</div>
+  <div class="app-footer-author">Criado por Jeferson Rolim · <a href="privacidade.html">Privacidade</a></div>
 </footer>
 
 <div class="modal-overlay" id="aboutModal" hidden>
@@ -206,7 +207,7 @@
     }
     wrap.innerHTML = sistema.fisiologia.map(f => `
       <div class="card" data-id="${f.id}">
-        <div class="card-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="card-head" data-toggle-card>
           <h2>${f.titulo}</h2>
           <div class="chevron"></div>
         </div>
@@ -299,6 +300,14 @@
   }
 
   init();
+
+  // Abre/fecha as fichas de fisiologia. Um único "ouvinte" na página
+  // (delegação de eventos) em vez de onclick="..." no HTML, que a
+  // Content-Security-Policy bloqueia.
+  document.addEventListener('click', e => {
+    const head = e.target.closest('[data-toggle-card]');
+    if(head) head.parentElement.classList.toggle('open');
+  });
 
   // ---------- modal "Sobre" (idêntico às outras páginas) ----------
   const modal = document.getElementById('aboutModal');
